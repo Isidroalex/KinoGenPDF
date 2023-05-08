@@ -1,0 +1,5 @@
+/cloneTemplate/
+/go-wkhtmltopdf@v1.9.0/
+*.pdf
+/.idea/
+blankTemplate.html
