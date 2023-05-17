@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSON форма</title>
+</head>
+<body>
+<table>
+    <tbody>
+        <td style=" text-align: right;vertical-align: top;" >
+            <h2>Кинологический центр</h2>
+            <form>
+                <label for="nameDC">Название:</label>
+                <input type="text" id="nameDC" name="NameDC" value="ТООО «Кинологический центр «СКИФ» г. Тула"><br><br>
+                <label for="addressDC">Адресс:</label>
+                <input type="text" id="addressDC" name="AddressDC" value="300025 Тула, проспект Ленина, 104-201"><br><br>
+                <label for="emailDC">Email:</label>
+                <input type="text" id="emailDC" name="EmailDC" value="tula-skif@mail.ru"><br><br>
+                <label for="mobile">Мобильный:</label>
+                <input type="text" id="mobile" name="Mobile" value="+7 910 701-55-99"><br><br>
+                <label for="federation">Федерация:</label>
+                <input type="text" id="federation" name="Federation" value="РФСС"><br><br>
+                <label for="folderNumber">Номер папки:</label>
+                <input type="text" id="folderNumber" name="FolderNumber" value="7107"><br><br>
+                <label for="stumpCode">Код клейма:</label>
+                <input type="text" id="stumpCode" name="StumpCode" value="CKF"><br><br>
+            </form>
+        </td>
+        <td></td>
+        <td style=" text-align: right;vertical-align: top;" >
+            <h2>Владелец питомника</h2>
+            <form>
+                <label for="chiefFIO">ФИО:</label>
+                <input type="text" id="chiefFIO" name="ChiefFIO"><br><br>
+                <label for="chiefAddress">Адрес:</label>
+                <input type="text" id="chiefAddress" name="ChiefAddress"><br><br>
+            </form>
+        </td>
+        <td></td>
+        <td style=" text-align: right;vertical-align: top;" >
+            <h2>Инструктор вязки</h2>
+            <form>
+                <label for="personalFIO">ФИО:</label>
+                <input type="text" id="personalFIO" name="PersonalFIO"><br><br>
+                <label for="personalAddress">Адрес:</label>
+                <input type="text" id="personalAddress" name="PersonalAddress"><br><br>
+            </form>
+        </td>
+        <td></td>
+        <td></td>
+        <td style=" text-align: right;vertical-align: top;" >
+            <h2>Отв.за клеймение</h2>
+            <form>
+                <label for="claimFIO">ФИО:</label>
+                <input type="text" id="claimFIO" name="ClaimFIO"><br><br>
+                <label for="claimAddress">Адрес:</label>
+                <input type="text" id="claimAddress" name="ClaimAddress"><br><br>
+            </form>
+        </td>
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <td style=" text-align: right;vertical-align: top;" >
+        <h2 style=" text-align: center;vertical-align: top;">Вязка (дд.мм.гггг)</h2>
+        <form>
+            <label for="identification">Идентификация:</label>
+            <input type="date" id="identification" name="Identification"><br><br>
+            <label for="first">Первая:</label>
+            <input type="date" id="first" name="First"><br><br>
+            <label for="controlDate">Контрольная:</label>
+            <input type="date" id="controlDate" name="ControlDate"><br><br>
+            <label for="matingAddress">Адрес вязки:</label>
+            <input type="text" id="matingAddress" name="MatingAddress"><br><br>
+            <label for="litterBirthday">Дата рождения помета:</label>
+            <input type="date" id="litterBirthday" name="LitterBirthday"><br><br>
+            <label for="litterSurvey">Дата акт обследования помета:</label>
+            <input type="date" id="litterSurvey" name="LitterSurvey"><br><br>
+            <label for="revisionPeriod">Срок пересмотра (мес):</label>
+            <input type="number" id="revisionPeriod" name="RevisionPeriod"><br><br>
+        </form>
+    </td>
+    <td style=" text-align: right;vertical-align: top;">
+        <h2 style=" text-align: center;vertical-align: top;">Отец</h2>
+        <form>
+            <label for="fatherName">Полная кличка:</label>
+            <input type="text" id="fatherName" name="FatherName"><br><br>
+            <label for="fatherPedigree">Номер РКФ:</label>
+            <input type="text" id="fatherPedigree" name="FatherPedigree"><br><br>
+            <label for="fatherStump">Клеймо:</label>
+            <input type="text" id="fatherStump" name="FatherStump"><br><br>
+            <label for="fatherOwnerFIO">Владелец:</label>
+            <input type="text" id="fatherOwnerFIO" name="FatherOwnerFIO"><br><br>
+            <label for="fatherAddress">Адрес:</label>
+            <input type="text" id="fatherAddress" name="FatherAddress"><br><br>
+        </form>
+    </td>
+    <td style=" text-align: right;vertical-align: top;">
+        <h2 style=" text-align: center;vertical-align: top;">Мать</h2>
+        <form>
+            <label for="motherName">Полная кличка:</label>
+            <input type="text" id="motherName" name="MotherName"><br><br>
+            <label for="motherPedigree">Номер РКФ:</label>
+            <input type="text" id="motherPedigree" name="MotherPedigree"><br><br>
+            <label for="motherStump">Клеймо:</label>
+            <input type="text" id="motherStump" name="MotherStump"><br><br>
+<!--            <label for="motherOwnerFIO">Владелец:</label>-->
+<!--            <input type="text" id="motherOwnerFIO" name="MotherOwnerFIO"><br><br>-->
+<!--            <label for="motherAddress">Адрес:</label>-->
+<!--            <input type="text" id="motherAddress" name="MotherAddress"><br><br>-->
+            <label for="motherType">Порода:</label>
+            <input type="text" id="motherType" name="MotherType"><br><br>
+        </form>
+    </td>
+    <td style=" text-align: right;vertical-align: top;">
+        <h2 style=" text-align: center;vertical-align: top;">Заводчик</h2>
+        <form>
+            <label for="breederFIO">ФИО:</label>
+            <input type="text" id="breederFIO" name="BreederFIO"><br><br>
+            <label for="breederContact">Адрес с индексом:</label>
+            <input type="text" id="breederContact" name="BreederContact"><br><br>
+            <label for="breederEmail">Email:</label>
+            <input type="text" id="breederEmail" name="BreederEmail"><br><br>
+            <label for="breederName">Приставка питомника:</label>
+            <input type="text" id="breederName" name="BreederName"><br><br>
+            <label for="breederNameEnd">Приставка (eng):</label>
+            <input type="text" id="breederNameEnd" name="BreederNameEng"><br><br>
+            <label for="suffix">Добавляется к кличке</label>
+            <select id="suffix" name="Suffix">
+                <option value="false">Спереди</option>
+                <option value="true">Сзади</option>
+            </select>
+        </form>
+    </td>
+    </tbody>
+</table>
+
+
+<h2>Щенки</h2>
+<div id="block2">
+    <div class="contact-form">
+        <label for="nickname1">Кличка:</label>
+        <input type="text" id="nickname1" name="Nickname"><br><br>
+        <label for="color1">Цвет:</label>
+        <input type="text" id="color1" name="Color"><br><br>
+        <label for="wooltype1">Тип шерсти:</label>
+        <input type="text" id="wooltype1" name="WoolType"><br><br>
+        <label for="stumpPuppy1">Номер клейма:</label>
+        <input type="text" id="stumpPuppy1" name="PuppyStump"><br><br>
+        <label for="sexPuppy1">Пол</label>
+        <select id="sexPuppy1" name="SexPuppy">
+            <option value="к">Кобель</option>
+            <option value="с">Сука</option>
+        </select><br><br>
+        <label for="statusPuppy1">Статус</label>
+        <select id="statusPuppy1" name="StatusPuppy">
+            <option value="good">Без замечаний</option>
+            <option value="revision">Пересмотр</option>
+            <option value="defect">Отбракован</option>
+        </select><br><br>
+        <label for="statusComment1">Комментарий:</label>
+        <input type="text" id="statusComment1" name="StatusComment"><br><br>
+    </div>
+    <button type="button" onclick="addField(this)">Добавить щенка</button>
+    <hr>
+</div>
+<br>
+<button style="justify-content: center; background-color: #2db62d;font-size: 20px;border: 3px solid #000000;" type="button" onclick="serialize()">Отправить</button>
+
+<script>
+    function addField(button) {
+        var container = document.getElementById("block2");
+        var newField = document.createElement("div");
+        newField.className = "contact-form";
+        newField.innerHTML = `
+          <label for="nickname${container.childElementCount+1}">Кличка:</label>
+          <input type="text" id="nickname${container.childElementCount+1}" name="Nickname"><br><br>
+          <label for="color${container.childElementCount+1}">Цвет:</label>
+          <input type="text" id="color${container.childElementCount+1}" name="Color"><br><br>
+          <label for="wooltype${container.childElementCount+1}">Тип шерсти:</label>
+          <input type="text" id="wooltype${container.childElementCount+1}" name="WoolType"><br><br>
+          <label for="stumpPuppy${container.childElementCount+1}">Номер клейма:</label>
+          <input type="text" id="stumpPuppy${container.childElementCount+1}" name="PuppyStump"><br><br>
+          <label for="sexPuppy${container.childElementCount+1}">Пол</label>
+            <select id="sexPuppy${container.childElementCount+1}" name="SexPuppy">
+            <option value="к">Кобель</option>
+            <option value="с">Сука</option>
+            </select><br><br>
+        <label for="statusPuppy${container.childElementCount+1}">Статус</label>
+            <select id="statusPuppy${container.childElementCount+1}" name="StatusPuppy">
+            <option value="good">Без замечаний</option>
+            <option value="revision">Пересмотр</option>
+            <option value="defect">Отбракован</option>
+        </select><br><br>
+        <label for="statusComment${container.childElementCount+1}">Комментарий:</label>
+        <input type="text" id="statusComment${container.childElementCount+1}" name="StatusComment"><br><br>
+          <button type="button" onclick="addField(this)">Добавить элемент</button>
+        `;
+        container.appendChild(newField);
+        container.appendChild(document.createElement("hr"));
+        if (button) {
+            button.style.display = "none";
+        }
+    }
+
+    function serialize() {
+
+
+
+         let formData = {
+            NameDC: document.querySelector('[name="NameDC"]').value,
+            AddressDC: document.querySelector('[name="AddressDC"]').value,
+            EmailDC: document.querySelector('[name="EmailDC"]').value,
+            Mobile: document.getElementById('mobile').value,
+            Federation: document.getElementById('federation').value,
+            FolderNumber: document.getElementById('folderNumber').value,
+            StumpCode: document.getElementById('stumpCode').value,
+             ChiefFIO: document.getElementById('chiefFIO').value,
+             ChiefAddress: document.getElementById('chiefAddress').value,
+             PersonalFIO: document.getElementById('personalFIO').value,
+             PersonalAddress: document.getElementById('personalAddress').value,
+             ClaimFIO: document.getElementById('claimFIO').value,
+            ClaimAddress: document.getElementById('claimAddress').value,
+            Identification: document.getElementById('identification').value,
+            First: document.getElementById('first').value,
+            Control: document.getElementById('controlDate').value,
+            MatingAddress: document.getElementById('matingAddress').value,
+            LitterBirthday: document.getElementById('litterBirthday').value,
+            LitterSurvey: document.getElementById('litterSurvey').value,
+            RevisionPeriod: document.getElementById('revisionPeriod').value,
+            FatherName: document.getElementById('fatherName').value,
+            FatherPedigree: document.getElementById('fatherPedigree').value,
+             FatherStump: document.getElementById('fatherStump').value,
+             FatherOwnerFIO: document.getElementById('fatherOwnerFIO').value,
+             FatherAddress: document.getElementById('fatherAddress').value,
+             MotherName: document.getElementById('motherName').value,
+             MotherPedigree: document.getElementById('motherPedigree').value,
+             MotherStump: document.getElementById('motherStump').value,
+             MotherType: document.getElementById('motherType').value,
+             Suffix: document.getElementById('suffix').value,
+             BreederFIO: document.getElementById('breederFIO').value,
+             BreederContact: document.getElementById('breederContact').value,
+             BreederEmail: document.getElementById('breederEmail').value,
+             BreederName: document.getElementById('breederName').value,
+             BreederNameEnd: document.getElementById('breederNameEnd').value,
+            Puppy: [],
+         };
+
+        const contactForms = document.querySelectorAll('.contact-form');
+
+        contactForms.forEach((form) => {
+            let nickname = form.querySelector('[name="Nickname"]').value;
+            let color = form.querySelector('[name="Color"]').value;
+            let wooltype = form.querySelector('[name="WoolType"]').value;
+            let puppyStump = form.querySelector('[name="PuppyStump"]').value;
+            let sexPuppy = form.querySelector('[name="SexPuppy"]').value;
+            formData.Puppy.push({ Nickname: nickname, Color: color, WoolType: wooltype, PuppyStump: puppyStump, SexPuppy : sexPuppy});
+        });
+        sendData(formData);
+    }
+
+
+    function sendData(data) {
+        fetch('http://192.168.100.5:3333', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'text/plain'
+            },
+            body: JSON.stringify(data) // Преобразование объекта в JSON строку
+        })
+    }
+</script>
+</body>
+</html>
