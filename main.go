@@ -238,6 +238,7 @@ func main() {
 	http.HandleFunc("/", handleRequest)
 	fmt.Println("Server listening on port 3333")
 	log.Fatal(http.ListenAndServe(":3333", nil))
+	fmt.Println("Sorry")
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
@@ -248,6 +249,8 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
+	fmt.Println(r)
+
 	if r.Method == "POST" {
 		t := time.Now().Unix()
 		defer os.Remove(strconv.FormatInt(t, 10) + "/" + "Акт вязки.pdf")
@@ -256,7 +259,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		defer os.Remove(strconv.FormatInt(t, 10) + "/" + "Регистрация.pdf")
 
 		Data := Input{}
-		r := pdf.NewRequestPdf("")
+		requestPdf := pdf.NewRequestPdf("")
 		if err := json.Unmarshal(body, &Data); err != nil {
 			fmt.Fprintf(w, "Received error: %s", err)
 			w.WriteHeader(http.StatusNotAcceptable)
@@ -286,9 +289,9 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 		templatePath := "blankMating.html"
 		outputPath := fmt.Sprintf(strconv.FormatInt(t, 10) + "/" + "Акт вязки.pdf")
-		if err := r.ParseTemplate(templatePath, mating); err == nil {
+		if err := requestPdf.ParseTemplate(templatePath, mating); err == nil {
 			args := []string{"no-pdf-compression"}
-			ok, _ := r.GeneratePDF(outputPath, args)
+			ok, _ := requestPdf.GeneratePDF(outputPath, args)
 			fmt.Println(ok, "pdf generated successfully")
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
@@ -315,9 +318,9 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 		templatePath = "blankAgreement.html"
 		outputPath = fmt.Sprintf(strconv.FormatInt(t, 10) + "/" + "СогласиеПД.pdf")
-		if err := r.ParseTemplate(templatePath, mating); err == nil {
+		if err := requestPdf.ParseTemplate(templatePath, mating); err == nil {
 			args := []string{"no-pdf-compression"}
-			ok, _ := r.GeneratePDF(outputPath, args)
+			ok, _ := requestPdf.GeneratePDF(outputPath, args)
 			fmt.Println(ok, "pdf generated successfully")
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
@@ -344,9 +347,9 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 		templatePath = "blankSurvey.html"
 		outputPath = fmt.Sprintf(strconv.FormatInt(t, 10) + "/" + "Обследование.pdf")
-		if err := r.ParseTemplate(templatePath, litter); err == nil {
+		if err := requestPdf.ParseTemplate(templatePath, litter); err == nil {
 			args := []string{"no-pdf-compression"}
-			ok, _ := r.GeneratePDF(outputPath, args)
+			ok, _ := requestPdf.GeneratePDF(outputPath, args)
 			fmt.Println(ok, "pdf generated successfully")
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
@@ -373,9 +376,9 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 		templatePath = "blankRegister.html"
 		outputPath = fmt.Sprintf(strconv.FormatInt(t, 10) + "/" + "Регистрация.pdf")
-		if err := r.ParseTemplate(templatePath, litter); err == nil {
+		if err := requestPdf.ParseTemplate(templatePath, litter); err == nil {
 			args := []string{"no-pdf-compression"}
-			ok, _ := r.GeneratePDF(outputPath, args)
+			ok, _ := requestPdf.GeneratePDF(outputPath, args)
 			fmt.Println(ok, "pdf generated successfully")
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
@@ -400,19 +403,107 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		var puppyCards []PuppyCard
+		for _, puppy := range Data.Puppy {
+
+			owner := Owner{
+				FIO:     "",
+				Contact: "",
+				Email:   "",
+			}
+			dogStruct := Dog{
+				Type:     Data.MotherType,
+				Nickname: puppy.Nickname,
+				Sex:      puppy.SexPuppy,
+				Stamp:    puppy.PuppyStump,
+				Father:   mating.Male,
+				Mother:   mating.Female,
+				Breeder:  mating.Female.Breeder,
+				Owner:    &owner,
+			}
+
+			puppyStruct := Puppy{
+
+				Color:    puppy.Color,
+				Birthday: Data.LitterBirthday,
+				WoolType: puppy.WoolType,
+				Description: struct {
+					Comment  string
+					Defect   string
+					Revision string
+				}{
+					Comment:  puppy.StatusComment,
+					Defect:   puppy.StatusPuppy,
+					Revision: Data.RevisionPeriod,
+				},
+				IncreaseIndex: func(a int) int {
+					return a + 1
+				},
+			}
+			puppyStruct.Dog = dogStruct
+
+			puppyCard := PuppyCard{
+				Puppy:   puppyStruct,
+				DCenter: *litter.DCenter,
+			}
+			puppyCards = append(puppyCards, puppyCard)
+		}
+
+		for i, v := range puppyCards {
+			templatePath = "blankPuppyCard.html"
+			outputPath = fmt.Sprintf(strconv.FormatInt(t, 10) + "/" + "Щенячка.pdf")
+			if err := requestPdf.ParseTemplate(templatePath, v); err == nil {
+				args := []string{"no-pdf-compression"}
+				ok, _ := requestPdf.GeneratePDF(outputPath, args)
+				fmt.Println(ok, "pdf generated successfully")
+			} else {
+				fmt.Fprintf(w, "Received error: %s", err)
+				w.WriteHeader(http.StatusInternalServerError)
+			}
+
+			pdfFile, err = os.Open(outputPath)
+			if err != nil {
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+			defer pdfFile.Close()
+
+			fileArhiveName := fmt.Sprintf("Щенячка %s.pdf", string(i))
+
+			zipEntry, err = zipWriter.Create(fileArhiveName)
+			if err != nil {
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+			_, err = io.Copy(zipEntry, pdfFile)
+			if err != nil {
+				http.Error(w, "Internal server error", 500)
+				return
+			}
+
+		}
+
+		zipWriter.Close()
+
 		w.Header().Set("Content-Type", "application/zip")
-		w.Header().Set("Content-Disposition", "attachment; filename=matingAct.pdf")
+		w.Header().Set("Content-Disposition", "attachment; filename=archive.zip")
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-		_, err = io.Copy(w, zipFile)
+		//_, err = io.Copy(w, zipFile)
+		//if err != nil {
+		//	http.Error(w, "Internal server error", 500)
+		//	return
+		//}
+		//fmt.Println("pdf copied successfully")
+		fileInfo, err := zipFile.Stat()
 		if err != nil {
-			http.Error(w, "Internal server error", 500)
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
-		fmt.Println("pdf copied successfully")
 
+		http.ServeContent(w, r, "archive.zip", fileInfo.ModTime(), zipFile)
 	} else {
 		// Отправка заголовков CORS
 		w.Header().Set("Access-Control-Allow-Origin", "*") // Здесь можно указать конкретный источник
