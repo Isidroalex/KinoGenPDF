@@ -238,7 +238,7 @@ func main() {
 	http.HandleFunc("/", handleRequest)
 	fmt.Println("Server listening on port 3333")
 	log.Fatal(http.ListenAndServe(":3333", nil))
-	fmt.Println("Извини")
+	fmt.Println("Sorry")
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
