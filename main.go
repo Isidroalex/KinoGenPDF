@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 	"time"
 )
@@ -235,13 +236,13 @@ func main() {
 	//	fmt.Println(err)
 	//}
 
-	http.HandleFunc("/", handleRequest)
+	http.HandleFunc("/get_pdf", handleRequestPDF)
+	http.HandleFunc("/", handleRequestIndex)
 	fmt.Println("Server listening on port 3333")
 	log.Fatal(http.ListenAndServe(":3333", nil))
-	fmt.Println("Sorry")
 }
 
-func handleRequest(w http.ResponseWriter, r *http.Request) {
+func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		log.Println("Failed to read request body:", err)
@@ -269,8 +270,10 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		litter := Litter{}
 		litter.Construct(Data)
 
-		if _, err := os.Stat(strconv.FormatInt(t, 10) + "/"); os.IsNotExist(err) {
-			errDir := os.Mkdir(strconv.FormatInt(t, 10)+"/", 0777)
+		//создаем директорию для ответа
+		dirName := strconv.FormatInt(t, 10) + "/"
+		if _, err := os.Stat(dirName); os.IsNotExist(err) {
+			errDir := os.Mkdir(dirName, 0777)
 			if errDir != nil {
 				http.Error(w, "Internal server error", 500)
 				return
@@ -449,7 +452,8 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 			puppyCards = append(puppyCards, puppyCard)
 		}
 
-		for i, v := range puppyCards {
+		for index, v := range puppyCards {
+
 			templatePath = "blankPuppyCard.html"
 			outputPath = fmt.Sprintf(strconv.FormatInt(t, 10) + "/" + "Щенячка.pdf")
 			if err := requestPdf.ParseTemplate(templatePath, v); err == nil {
@@ -468,18 +472,21 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 			}
 			defer pdfFile.Close()
 
-			fileArhiveName := fmt.Sprintf("Щенячка %s.pdf", string(i))
+			fileArhiveName := fmt.Sprintf("Щенячка %s.pdf", v.Nickname)
 
 			zipEntry, err = zipWriter.Create(fileArhiveName)
 			if err != nil {
 				http.Error(w, "Internal server error", 500)
 				return
 			}
+
 			_, err = io.Copy(zipEntry, pdfFile)
 			if err != nil {
 				http.Error(w, "Internal server error", 500)
 				return
 			}
+			fmt.Printf("Сбросили Щенячку %d.\n", index)
+			zipWriter.Flush()
 
 		}
 
@@ -491,19 +498,13 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-		//_, err = io.Copy(w, zipFile)
-		//if err != nil {
-		//	http.Error(w, "Internal server error", 500)
-		//	return
-		//}
-		//fmt.Println("pdf copied successfully")
 		fileInfo, err := zipFile.Stat()
 		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
-
 		http.ServeContent(w, r, "archive.zip", fileInfo.ModTime(), zipFile)
+
 	} else {
 		// Отправка заголовков CORS
 		w.Header().Set("Access-Control-Allow-Origin", "*") // Здесь можно указать конкретный источник
@@ -513,4 +514,35 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 	}
 
+}
+
+func handleRequestIndex(w http.ResponseWriter, r *http.Request) {
+	// читаем файл index.html
+	content, err := ioutil.ReadFile("index.html")
+	if err != nil {
+		// если файл не найден, отдаем ошибку 404
+		http.Error(w, "File not found", 404)
+		return
+	}
+	// отдаем содержимое файла
+	fmt.Fprintf(w, "%s", content)
+}
+
+func RemoveContents(dir string) error {
+	d, err := os.Open(dir)
+	if err != nil {
+		return err
+	}
+	defer d.Close()
+	names, err := d.Readdirnames(-1)
+	if err != nil {
+		return err
+	}
+	for _, name := range names {
+		err = os.RemoveAll(filepath.Join(dir, name))
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
