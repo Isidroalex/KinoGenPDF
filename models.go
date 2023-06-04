@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -138,13 +139,43 @@ func (l Litter) ShowPuppyStumped(sex string) int {
 
 func (l Litter) ShowPuppyDefected(checkbox bool) int {
 	var counter int
-
-	for _, v := range l.Puppy {
-		if v.Description.Defect == "defect" {
-			counter++
+	if checkbox {
+		for _, v := range l.Puppy {
+			if v.Description.Defect == "defect" {
+				counter++
+			}
+		}
+	} else {
+		for _, v := range l.Puppy {
+			if v.Description.Defect != "defect" {
+				counter++
+			}
 		}
 	}
 	return counter
+}
+
+func (l Litter) ShowPuppyRevision(checkbox bool) int {
+	var counter int
+	if checkbox {
+		for _, v := range l.Puppy {
+			if v.Description.Defect == "revision" {
+				counter++
+			}
+		}
+	} else {
+		for _, v := range l.Puppy {
+			if v.Description.Defect != "revision" {
+				counter++
+			}
+		}
+	}
+	return counter
+}
+
+func (l Litter) RevisionDate() string {
+
+	return l.Puppy[0].Description.Revision
 
 }
 
@@ -157,6 +188,66 @@ func (p Puppy) ShowStumpNumber() int {
 	}
 
 	return 0
+}
+
+func (p Puppy) ShowFullNameRus() string {
+	var result []string
+	//Приставка определяется по значению поля NamePosition. False - спереди, true - сзади
+	if p.Breeder.NamePosition == "false" {
+		result = append(result, p.Breeder.Name, p.Nickname)
+	} else {
+		result = append(result, p.Nickname, p.Breeder.Name)
+	}
+	return strings.Join(result, " ")
+}
+
+func (p Puppy) ShowFullNameEng() string {
+	var result []string
+	//Приставка определяется по значению поля NamePosition. False - спереди, true - сзади
+	if p.Breeder.NamePosition == "false" {
+		result = append(result, p.Breeder.NameEng, convertToLatin(p.Nickname))
+	} else {
+		result = append(result, convertToLatin(p.Nickname), p.Breeder.NameEng)
+	}
+	return strings.Join(result, " ")
+}
+
+func (p Puppy) LongSex() string {
+
+	if p.Sex == "к" {
+		return "кобель"
+	} else {
+		return "сука"
+	}
+}
+
+func (p Puppy) ShortDisription() string {
+
+	switch p.Description.Defect {
+	case "revision":
+		if p.WoolType != "" {
+			return fmt.Sprintf("Необходим пересмотр (%s) тип шерсти: %s", p.Description.Comment, p.WoolType)
+		} else {
+			return fmt.Sprintf("Необходим пересмотр (%s)", p.Description.Comment)
+		}
+	case "defect":
+		if p.WoolType != "" {
+			return fmt.Sprintf("Отбракован (%s) тип шерсти: %s", p.Description.Comment, p.WoolType)
+		} else {
+			return fmt.Sprintf("Отбракован (%s)", p.Description.Comment)
+		}
+	default:
+		if p.WoolType != "" {
+			return fmt.Sprintf("Без замечаний, тип шерсти: %s", p.WoolType)
+		} else {
+			return fmt.Sprintf("Без замечаний")
+		}
+	}
+
+}
+
+func (p Puppy) ShowNameEng() string {
+	return convertToLatin(p.Nickname)
 }
 
 type Input struct {
@@ -201,8 +292,8 @@ type Input struct {
 		WoolType      string `json:"WoolType"`
 		PuppyStump    string `json:"PuppyStump"`
 		SexPuppy      string `json:"SexPuppy"`
-		StatusPuppy   string `json:"SexPuppy"`
-		StatusComment string `json:"SexPuppy"`
+		StatusPuppy   string `json:"StatusPuppy"`
+		StatusComment string `json:"StatusComment"`
 	} `json:"Puppy"`
 }
 
@@ -353,4 +444,87 @@ func (l *Litter) Construct(i Input) {
 		l.Puppy = append(l.Puppy, &tmp)
 	}
 
+}
+
+func convertToLatin(input string) string {
+	convertMap := map[rune]string{
+		'А': "A",
+		'Б': "B",
+		'В': "V",
+		'Г': "G",
+		'Д': "D",
+		'Е': "E",
+		'Ё': "YO",
+		'Ж': "ZH",
+		'З': "Z",
+		'И': "I",
+		'Й': "Y",
+		'К': "K",
+		'Л': "L",
+		'М': "M",
+		'Н': "N",
+		'О': "O",
+		'П': "P",
+		'Р': "R",
+		'С': "S",
+		'Т': "T",
+		'У': "U",
+		'Ф': "F",
+		'Х': "KH",
+		'Ц': "TS",
+		'Ч': "CH",
+		'Ш': "SH",
+		'Щ': "SHCH",
+		'Ъ': "",
+		'Ы': "Y",
+		'Ь': "",
+		'Э': "E",
+		'Ю': "YU",
+		'Я': "YA",
+		'а': "a",
+		'б': "b",
+		'в': "v",
+		'г': "g",
+		'д': "d",
+		'е': "e",
+		'ё': "yo",
+		'ж': "zh",
+		'з': "z",
+		'и': "i",
+		'й': "y",
+		'к': "k",
+		'л': "l",
+		'м': "m",
+		'н': "n",
+		'о': "o",
+		'п': "p",
+		'р': "r",
+		'с': "s",
+		'т': "t",
+		'у': "u",
+		'ф': "f",
+		'х': "kh",
+		'ц': "ts",
+		'ч': "ch",
+		'ш': "sh",
+		'щ': "shch",
+		'ъ': "",
+		'ы': "y",
+		'ь': "",
+		'э': "e",
+		'ю': "yu",
+		'я': "ya",
+	}
+
+	var result []string
+
+	for _, char := range input {
+		if converted, ok := convertMap[char]; ok {
+			result = append(result, converted)
+		} else {
+			result = append(result, string(char))
+		}
+	}
+
+	return strings.Join(result, "")
 }
