@@ -68,7 +68,7 @@
     <p >&nbsp;</p>
     <p style='font-size:13px;font-family:"Cambria",serif;'><strong>Родилось</strong> {{.ShowPuppyCount ""}}: кобелей {{.ShowPuppyCount "к"}}, сук {{.ShowPuppyCount "с"}}</p>
     <p style='font-size:13px;font-family:"Cambria",serif;'><strong>Осмотрено клейменых щенков</strong> {{.ShowPuppyStumped ""}}: кобелей {{.ShowPuppyStumped "к"}}, сук {{.ShowPuppyStumped "с"}}</p>
-    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'>Отбраковано</span></strong><span style='font-size:13px;font-family:"Cambria",serif;'>&nbsp; &nbsp;ДА ({{.ShowPuppyDefected true}}) &nbsp;НЕТ ({{.ShowPuppyDefected false}})  <strong>Оставлено на переосмотр в</strong> _______ мес: &nbsp; ДА ( &nbsp; &nbsp; &nbsp;) &nbsp;НЕТ ( &nbsp; &nbsp; &nbsp; )</span></p>
+    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'>Отбраковано</span></strong><span style='font-size:13px;font-family:"Cambria",serif;'>&nbsp; &nbsp;ДА ({{.ShowPuppyDefected true}}) &nbsp;НЕТ ({{.ShowPuppyDefected false}})  <strong>Оставлено на переосмотр в</strong> {{.RevisionDate}} мес: &nbsp; ДА ({{.ShowPuppyRevision true}}) &nbsp;НЕТ ({{.ShowPuppyRevision false}})</span></p>
     <p >&nbsp;</p>
     <table style="width:100%;border-collapse:collapse;border:none;">
         <tbody>
@@ -97,16 +97,16 @@
                     <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'>{{call .IncreaseIndex $i}}</span></strong></p>
                 </td>
                 <td style="width:38.45pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
-                    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Sex}}</i></span></strong></p>
+                    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.LongSex}}</i></span></strong></p>
                 </td>
                 <td style="width:262.3pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
-                    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Description.Comment}}</i></span></strong></p>
+                    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.ShortDisription}}</i></span></strong></p>
                 </td>
                 <td style="width:99.25pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
                     <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Color}}</i></span></strong></p>
                 </td>
                 <td style="width:60.25pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
-                    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.ShowStumpNumber}}</i></span></strong></p>
+                    <p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Stamp}}</i></span></strong></p>
                 </td>
             </tr>
 			<i>{{end}}</i>

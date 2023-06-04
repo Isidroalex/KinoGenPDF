@@ -36,21 +36,21 @@
 <p>&nbsp;</p>
 <table style="width: 100%; border-collapse: collapse; border: none;">
 	<tbody>
-	<tr style="width: 100%;padding: 0in 5.4pt 0in 5.4pt;">
-		<td style="border: solid windowtext 1.0pt;"><p><b> ПОРОДА</b> / BREED</p></td>
-		<td style="border: solid windowtext 1.0pt;"><p>{{.Type}}</p></td>
+	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
+		<td><p><b> ПОРОДА</b> / BREED</td>
+		<td><p> {{.Type}} </p></td>
 	</tr>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
 		<td><p><b>КЛИЧКА</b> / NAME </p></td>
-		<td><p> {{.Breeder.Name}} {{.Nickname}} / {{.Breeder.Name}} {{.Nickname}} </p></td>
+		<td><p> {{.ShowFullNameRus}} / {{.ShowFullNameEng}} </p></td>
 	</tr>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
 		<td style="border:solid windowtext 1.0pt;"><p><b> ДАТА РОЖДЕНИЯ</b> / DATE OF BIRTH   {{.Birthday}}</p></td>
-		<td><p><b>ПОЛ</b> / SEX  {{.Sex}}</p></td>
+		<td><p><b>ПОЛ</b> / SEX  {{.LongSex}}</p></td>
 	</tr>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
 		<td style="border:solid windowtext 1.0pt;"><p><b> ОКРАС</b> / COLOUR   {{.Color}}</p></td>
-		<td><p><b>КЛЕЙМО</b> / TATTOO  {{.Stamp}}</p></td>
+		<td><p><b>КЛЕЙМО</b> / TATTOO  {{.DCenter.StumpCode}} {{.Stamp}}</p></td>
 	</tr>
 	</tbody>
 </table>
@@ -78,8 +78,10 @@
 	</tbody>
 </table>
 <p>&nbsp;</p>
-<p style="margin-left: 0pt;font-size: 12.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ:</u> </b> Отбракован:<b> {{.Description.Defect}}</b> ({{.Description.Comment}})</p>
-<p style="margin-left: 0pt;font-size: 12.0pt;">Оставлен на переосмотр:<b> НЕТ </b> / ДА, и причину</p>
+<p style="margin-left: 0pt;font-size: 12.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ </u> </b></p>
+<p style="margin-left: 0pt;font-size: 12.0pt;"><i>{{.ShortDisription}}</i></p>
+<!--<p style="margin-left: 0pt;font-size: 12.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ:</u> </b> Отбракован:<b> {{.Description.Defect}}</b> ({{.Description.Comment}})</p>-->
+<!--<p style="margin-left: 0pt;font-size: 12.0pt;">Оставлен на переосмотр:<b> НЕТ </b> / ДА, и причину</p>-->
 <p>&nbsp;</p>
 <p style="margin-left: 0pt;font-size: 12.0pt;"><b> ПОДПИСЬ ЗАВОДЧИКА </b> / BREEDER'S SIGNATURE  ________________________</p>
 <p>&nbsp;</p>
@@ -110,19 +112,18 @@
 <p style="text-align: center;font-size: 9.0pt"> При обмене метрики щенка на свидетельство о происхождении собаки остаётся у владельца </p>
 <p>&nbsp;</p>
 
-<table style="width: 100%;height: 17.0pt; font-size: 10.0pt;border: solid 1.0pt;border-collapse: collapse;">
+<table style="width: 100%;height: 17.0pt; font-size: 11.0pt;border: solid 1.0pt;border-collapse: collapse;">
 	<tbody>
 	<tr style="width: 100%">
-		<td style="border: solid windowtext 1.0pt;" colspan="3"><p><b> ПОРОДА</b> / BREED</p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="3"><p>{{.Type}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="6"><p><b>Порода</b> / Breed {{.Type}}</p></td>
 	</tr>
 	<tr style="width: 100%;border:solid 1.0pt;">
-		<td style="border: solid windowtext 1.0pt;" colspan="3"><p><b>КЛИЧКА</b> / NAME {{.Breeder.Name}} {{.Nickname}} / {{.Breeder.Name}} {{.Nickname}}</p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="3"><p> Пол/Sex: {{.Sex}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="3"><p><b>Кличка</b> / Name {{.ShowFullNameRus}} / {{.ShowFullNameEng}} </p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="3"><p> Пол/Sex: {{.LongSex}}</p></td>
 	</tr>
-	<tr style="width: 100%;text-align: center">
+	<tr style="width: 100%;">
 		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Дата рождения/d.o.b.</b> {{.Birthday}}</p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Клеймо/TATTOO </b> / NAME {{.Stamp}} </p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Клеймо/TATTOO </b> {{.DCenter.StumpCode}} {{.Stamp}} </p></td>
 		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Окрас/Colour:</b> {{.Color}}</p></td>
 	</tr>
 	<tr style="border:solid 1.0pt;">
@@ -155,8 +156,10 @@
 </table>
 <p>&nbsp;</p>
 <p style="margin-left: 0pt;font-size: 12.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ </u> </b></p>
-<p style="margin-left: 0pt;font-size: 12.0pt;">Отбракован:<b> {{.Description.Defect}}</b> ({{.Description.Comment}})</p>
-<p style="margin-left: 0pt;font-size: 12.0pt;">Оставлен на переосмотр:<b> НЕТ </b> / ДА, и причину</p>
+<p style="margin-left: 0pt;font-size: 12.0pt;"><i>{{.ShortDisription}}</i></p>
+
+<!--<p style="margin-left: 0pt;font-size: 12.0pt;">Отбракован:<b> {{.Description.Defect}}</b> ({{.Description.Comment}})</p>-->
+<!--<p style="margin-left: 0pt;font-size: 12.0pt;">Оставлен на переосмотр:<b> НЕТ </b> / ДА, и причину</p>-->
 <p>&nbsp;</p>
 <p style="margin-left: 0pt;font-size: 12.0pt;"><b> ПОДПИСЬ ЗАВОДЧИКА </b> / BREEDER'S SIGNATURE  ________________________</p>
 <p>&nbsp;</p>

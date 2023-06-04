@@ -106,7 +106,7 @@
 				<p style="font-size:13px;"><strong>Отбраковано</strong> ДА ({{.ShowPuppyDefected true}}) &nbsp;НЕТ ({{.ShowPuppyDefected false}})  </p>
 			</td>
 			<td>
-				<p style='font-size:13px;'><strong>Оставлено на переосмотр в</strong> _______ мес: &nbsp; ДА ( &nbsp; &nbsp; &nbsp;) &nbsp;НЕТ ( &nbsp; &nbsp; &nbsp; )</p>
+				<p style='font-size:13px;'><strong>Оставлено на переосмотр в</strong> {{.RevisionDate}} мес: &nbsp; ДА ({{.ShowPuppyRevision true}}) &nbsp;НЕТ ({{.ShowPuppyRevision false}})</p>
 			</td>
 		</tr>
 	</table>
@@ -139,13 +139,13 @@
 				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Sex}}</i></span></strong></p>
 			</td>
 			<td style="width:262.3pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
-				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Nickname}} / {{.Nickname}}</i></span></strong></p>
+				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Nickname}} / {{.ShowNameEng}}</i></span></strong></p>
 			</td>
 			<td style="width:99.25pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
 				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Color}}</i></span></strong></p>
 			</td>
 			<td style="width:60.25pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
-				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.ShowStumpNumber}}</i></span></strong></p>
+				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Cambria",serif;'><i>{{.Stamp}}</i></span></strong></p>
 			</td>
 		</tr>
 		<i>{{end}}</i>

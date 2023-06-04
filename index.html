@@ -252,7 +252,9 @@
             let wooltype = form.querySelector('[name="WoolType"]').value;
             let puppyStump = form.querySelector('[name="PuppyStump"]').value;
             let sexPuppy = form.querySelector('[name="SexPuppy"]').value;
-            formData.Puppy.push({ Nickname: nickname, Color: color, WoolType: wooltype, PuppyStump: puppyStump, SexPuppy : sexPuppy});
+            let statusPuppy = form.querySelector('[name="StatusPuppy"]').value;
+            let statusComment = form.querySelector('[name="StatusComment"]').value;
+            formData.Puppy.push({ Nickname: nickname, Color: color, WoolType: wooltype, PuppyStump: puppyStump, SexPuppy : sexPuppy, StatusPuppy: statusPuppy, StatusComment: statusComment});
         });
         sendData(formData);
     }

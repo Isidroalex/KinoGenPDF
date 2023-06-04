@@ -39,6 +39,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		defer os.Remove(strconv.FormatInt(t, 10) + "/" + "СогласиеПД.pdf")
 		defer os.Remove(strconv.FormatInt(t, 10) + "/" + "Обследование.pdf")
 		defer os.Remove(strconv.FormatInt(t, 10) + "/" + "Регистрация.pdf")
+		defer os.Remove(strconv.FormatInt(t, 10) + "/" + "Щенячка.pdf")
 
 		Data := Input{}
 		requestPdf := pdf.NewRequestPdf("")
@@ -250,7 +251,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 			}
 			defer pdfFile.Close()
 
-			fileArhiveName := fmt.Sprintf("Щенячка %s.pdf", string(i))
+			fileArhiveName := fmt.Sprintf("Щенячка %d.pdf", i)
 
 			zipEntry, err = zipWriter.Create(fileArhiveName)
 			if err != nil {
