@@ -195,14 +195,15 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 				Email:   "",
 			}
 			dogStruct := Dog{
-				Type:     Data.MotherType,
-				Nickname: puppy.Nickname,
-				Sex:      puppy.SexPuppy,
-				Stamp:    puppy.PuppyStump,
-				Father:   mating.Male,
-				Mother:   mating.Female,
-				Breeder:  mating.Female.Breeder,
-				Owner:    &owner,
+				Type:        Data.MotherType,
+				Nickname:    puppy.Nickname,
+				NicknameEng: puppy.NicknameEng,
+				Sex:         puppy.SexPuppy,
+				Stamp:       puppy.PuppyStump,
+				Father:      mating.Male,
+				Mother:      mating.Female,
+				Breeder:     mating.Female.Breeder,
+				Owner:       &owner,
 			}
 
 			puppyStruct := Puppy{

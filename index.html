@@ -138,6 +138,8 @@
     <div class="contact-form">
         <label for="nickname1">Кличка:</label>
         <input type="text" id="nickname1" name="Nickname"><br><br>
+        <label for="nicknameeng1">Кличка eng:</label>
+        <input type="text" id="nicknameeng1" name="NicknameEng"><br><br>
         <label for="color1">Окрас:</label>
         <input type="text" id="color1" name="Color"><br><br>
         <label for="wooltype1">Тип шерсти:</label>
@@ -172,6 +174,8 @@
         newField.innerHTML = `
           <label for="nickname${container.childElementCount+1}">Кличка:</label>
           <input type="text" id="nickname${container.childElementCount+1}" name="Nickname"><br><br>
+          <label for="nicknameEng${container.childElementCount+1}">Кличка eng:</label>
+          <input type="text" id="nicknameEng${container.childElementCount+1}" name="NicknameEng"><br><br>
           <label for="color${container.childElementCount+1}">Окрас:</label>
           <input type="text" id="color${container.childElementCount+1}" name="Color"><br><br>
           <label for="wooltype${container.childElementCount+1}">Тип шерсти:</label>
@@ -244,13 +248,15 @@
 
         contactForms.forEach((form) => {
             let nickname = form.querySelector('[name="Nickname"]').value;
+            let nicknameEng = form.querySelector('[name="NicknameEng"]').value;
             let color = form.querySelector('[name="Color"]').value;
             let wooltype = form.querySelector('[name="WoolType"]').value;
             let puppyStump = form.querySelector('[name="PuppyStump"]').value;
             let sexPuppy = form.querySelector('[name="SexPuppy"]').value;
             let statusPuppy = form.querySelector('[name="StatusPuppy"]').value;
             let statusComment = form.querySelector('[name="StatusComment"]').value;
-            formData.Puppy.push({ Nickname: nickname, Color: color, WoolType: wooltype, PuppyStump: puppyStump, SexPuppy : sexPuppy, StatusPuppy: statusPuppy, StatusComment: statusComment});
+            formData.Puppy.push({ Nickname: nickname, Color: color, WoolType: wooltype,
+                PuppyStump: puppyStump, SexPuppy : sexPuppy, StatusPuppy: statusPuppy, StatusComment: statusComment, NicknameEng: nicknameEng});
         });
         sendData(formData);
     }
