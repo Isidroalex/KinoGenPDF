@@ -31,7 +31,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	fmt.Printf("Receive request %s, %s", r.Method, r.Body)
+	fmt.Printf("Receive request %s, %s\n", r.Method, r.Body)
 
 	if r.Method == "POST" {
 		t := time.Now().Unix()

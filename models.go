@@ -191,6 +191,14 @@ func (p Puppy) ShowStumpNumber() int {
 	return 0
 }
 
+func (p Puppy) ShowWoolType() string {
+
+	if p.WoolType != "" {
+		return fmt.Sprintf("(%s)", p.WoolType)
+	}
+	return ""
+}
+
 func (p Puppy) ShowFullNameRus() string {
 	var result []string
 	//Приставка определяется по значению поля NamePosition. False - спереди, true - сзади
