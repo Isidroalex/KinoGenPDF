@@ -44,7 +44,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		Data := Input{}
 		requestPdf := pdf.NewRequestPdf("")
 		if err := json.Unmarshal(body, &Data); err != nil {
-			fmt.Fprintf(w, "Received error: %s", err)
+			fmt.Fprintf(w, "Received error: %s\n", err)
 			w.WriteHeader(http.StatusNotAcceptable)
 		}
 		mating := Mating{}
@@ -75,7 +75,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		if err := requestPdf.ParseTemplate(templatePath, mating); err == nil {
 			args := []string{"no-pdf-compression"}
 			ok, _ := requestPdf.GeneratePDF(outputPath, args)
-			fmt.Println(ok, "pdf generated successfully")
+			fmt.Printf("Generated %s:%v\n", outputPath, ok)
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -104,7 +104,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		if err := requestPdf.ParseTemplate(templatePath, mating); err == nil {
 			args := []string{"no-pdf-compression"}
 			ok, _ := requestPdf.GeneratePDF(outputPath, args)
-			fmt.Println(ok, "pdf generated successfully")
+			fmt.Printf("Generated %s:%v\n", outputPath, ok)
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -133,7 +133,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		if err := requestPdf.ParseTemplate(templatePath, litter); err == nil {
 			args := []string{"no-pdf-compression"}
 			ok, _ := requestPdf.GeneratePDF(outputPath, args)
-			fmt.Println(ok, "pdf generated successfully")
+			fmt.Printf("Generated %s:%v\n", outputPath, ok)
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -162,7 +162,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		if err := requestPdf.ParseTemplate(templatePath, litter); err == nil {
 			args := []string{"no-pdf-compression"}
 			ok, _ := requestPdf.GeneratePDF(outputPath, args)
-			fmt.Println(ok, "pdf generated successfully")
+			fmt.Printf("Generated %s:%v\n", outputPath, ok)
 		} else {
 			fmt.Fprintf(w, "Received error: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
@@ -238,7 +238,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 			if err := requestPdf.ParseTemplate(templatePath, v); err == nil {
 				args := []string{"no-pdf-compression"}
 				ok, _ := requestPdf.GeneratePDF(outputPath, args)
-				fmt.Println(ok, "pdf generated successfully")
+				fmt.Printf("Generated %s:%v\n", outputPath, ok)
 			} else {
 				fmt.Fprintf(w, "Received error: %s", err)
 				w.WriteHeader(http.StatusInternalServerError)
