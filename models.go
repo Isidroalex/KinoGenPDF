@@ -73,15 +73,16 @@ type Breeder struct {
 }
 
 type Dog struct {
-	Type     string
-	Nickname string
-	Sex      string
-	Stamp    string
-	Pedigree string
-	Father   *Dog
-	Mother   *Dog
-	Breeder  *Breeder
-	Owner    *Owner
+	Type        string
+	Nickname    string
+	NicknameEng string
+	Sex         string
+	Stamp       string
+	Pedigree    string
+	Father      *Dog
+	Mother      *Dog
+	Breeder     *Breeder
+	Owner       *Owner
 }
 
 type Puppy struct {
@@ -191,6 +192,14 @@ func (p Puppy) ShowStumpNumber() int {
 	return 0
 }
 
+func (p Puppy) ShowWoolType() string {
+
+	if p.WoolType != "" {
+		return fmt.Sprintf("(%s)", p.WoolType)
+	}
+	return ""
+}
+
 func (p Puppy) ShowFullNameRus() string {
 	var result []string
 	//Приставка определяется по значению поля NamePosition. False - спереди, true - сзади
@@ -204,13 +213,23 @@ func (p Puppy) ShowFullNameRus() string {
 
 func (p Puppy) ShowFullNameEng() string {
 	var result []string
-	//Приставка определяется по значению поля NamePosition. False - спереди, true - сзади
-	if p.Breeder.NamePosition == "false" {
-		result = append(result, p.Breeder.NameEng, convertToLatin(p.Nickname))
+	//Приставка определяется по значению поля NamePosition. False - спереди, true - сзади.
+	//Если введено значение с клавиатуры, используется оно, если нет - конвертируется по правилам.
+	if p.NicknameEng == "" {
+		if p.Breeder.NamePosition == "false" {
+			result = append(result, p.Breeder.NameEng, convertToLatin(p.Nickname))
+		} else {
+			result = append(result, convertToLatin(p.Nickname), p.Breeder.NameEng)
+		}
+		return strings.Join(result, " ")
 	} else {
-		result = append(result, convertToLatin(p.Nickname), p.Breeder.NameEng)
+		if p.Breeder.NamePosition == "false" {
+			result = append(result, p.Breeder.NameEng, p.NicknameEng)
+		} else {
+			result = append(result, p.NicknameEng, p.Breeder.NameEng)
+		}
+		return strings.Join(result, " ")
 	}
-	return strings.Join(result, " ")
 }
 
 func (p Puppy) LongSex() string {
@@ -273,6 +292,9 @@ func (p Puppy) ShortDisruptionPuppyCard(place string) string {
 }
 
 func (p Puppy) ShowNameEng() string {
+	if p.NicknameEng != "" {
+		return p.NicknameEng
+	}
 	return convertToLatin(p.Nickname)
 }
 
@@ -314,6 +336,7 @@ type Input struct {
 	BreederNameEnd  string `json:"BreederNameEnd"`
 	Puppy           []struct {
 		Nickname      string `json:"Nickname"`
+		NicknameEng   string `json:"NicknameEng"`
 		Color         string `json:"Color"`
 		WoolType      string `json:"WoolType"`
 		PuppyStump    string `json:"PuppyStump"`
@@ -441,15 +464,16 @@ func (l *Litter) Construct(i Input) {
 	for _, v := range i.Puppy {
 		tmp := Puppy{
 			Dog: Dog{
-				Type:     i.MotherType,
-				Nickname: v.Nickname,
-				Sex:      v.SexPuppy,
-				Stamp:    v.PuppyStump,
-				Pedigree: "",
-				Father:   l.Male,
-				Mother:   l.Female,
-				Breeder:  l.Female.Breeder,
-				Owner:    nil,
+				Type:        i.MotherType,
+				Nickname:    v.Nickname,
+				NicknameEng: v.NicknameEng,
+				Sex:         v.SexPuppy,
+				Stamp:       v.PuppyStump,
+				Pedigree:    "",
+				Father:      l.Male,
+				Mother:      l.Female,
+				Breeder:     l.Female.Breeder,
+				Owner:       nil,
 			},
 			Color:    v.Color,
 			Birthday: formatDate(i.LitterBirthday),

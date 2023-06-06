@@ -31,7 +31,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	fmt.Printf("Receive request %s, %s", r.Method, r.Body)
+	fmt.Printf("Receive request %s, %s\n", r.Method, r.Body)
 
 	if r.Method == "POST" {
 		t := time.Now().Unix()
@@ -195,14 +195,15 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 				Email:   "",
 			}
 			dogStruct := Dog{
-				Type:     Data.MotherType,
-				Nickname: puppy.Nickname,
-				Sex:      puppy.SexPuppy,
-				Stamp:    puppy.PuppyStump,
-				Father:   mating.Male,
-				Mother:   mating.Female,
-				Breeder:  mating.Female.Breeder,
-				Owner:    &owner,
+				Type:        Data.MotherType,
+				Nickname:    puppy.Nickname,
+				NicknameEng: puppy.NicknameEng,
+				Sex:         puppy.SexPuppy,
+				Stamp:       puppy.PuppyStump,
+				Father:      mating.Male,
+				Mother:      mating.Female,
+				Breeder:     mating.Female.Breeder,
+				Owner:       &owner,
 			}
 
 			puppyStruct := Puppy{

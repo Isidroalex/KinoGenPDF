@@ -138,7 +138,7 @@
 				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Times New Roman",serif;'><i>{{.Sex}}</i></span></strong></p>
 			</td>
 			<td style="width:262.3pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
-				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Times New Roman",serif;'><i>{{.Nickname}} / {{.ShowNameEng}}</i></span></strong></p>
+				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Times New Roman",serif;'><i>{{.Nickname}} {{.ShowWoolType}} / {{.ShowNameEng}}</i></span></strong></p>
 			</td>
 			<td style="width:99.25pt;border-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:21.25pt;">
 				<p style='margin:0in;font-size:16px;font-family:"Times New Roman",serif;text-align:center;'><strong><span style='font-size:13px;font-family:"Times New Roman",serif;'><i>{{.Color}}</i></span></strong></p>
@@ -152,20 +152,52 @@
 		</table>
 	<p >&nbsp;</p>
 	<p >&nbsp;</p>
-	<p style="text-align:left;">НАЗВАНИЕ ПИТОМНИКА <i>{{.Female.Breeder.Name}}</i> </p>
-	<p >&nbsp;</p>
-	<p style="text-align:left;">ЗАВОДЧИК           /__________________/     <i> {{.Female.Breeder.FIO}}</i></p>
-	<p >&nbsp;</p>
-	<p style="text-align:left;">АДРЕС ЗАВОДЧИКА С ИНДЕКСОМ <i>{{.Female.Breeder.Contact}}</i></p>
-	<p >&nbsp;</p>
-	<p style="text-align:left;font-size: 11pt;">Метрики щенков заполнены в строгом соответствии с данным актом обследования помета</p>
-	<p >&nbsp;</p>
-	<p style="text-align:justify;">ОТВЕТСТВЕННЫЙ ЗА КЛЕЙМЕНИЕ   /__________________/   <i>{{.Claim.FIO}}</i> </p>
-	<p >&nbsp;</p>
-	<p style="text-align:left;">ИНСТРУКТОР КЛУБА / ВЛАДЕЛЕЦ ПИТОМНИКА           /__________________/   <i> {{.Chief.FIO}} </i> </p>
-	<p >&nbsp;</p>
-	<p >&nbsp;</p>
-	<p> <b>М.П.</b></p>
+
+	<table bordercolor="red" border="0" width="100%">
+		<tr>
+			<td align="left"> НАЗВАНИЕ ПИТОМНИКА <i>{{.Female.Breeder.Name}}</i> </td>
+		</tr>
+		<tr>
+			<td> &nbsp; </td>
+		</tr>
+		<tr>
+			<td align="left"> <b>ЗАВОДЧИК</b></td>
+			<td align="right"> ______________________</td>
+			<td align="right"> /<i>{{.Female.Owner.FIO}}</i>/ </td>
+		</tr>
+		<tr>
+			<td> &nbsp; </td>
+		</tr>
+		<tr>
+			<td>АДРЕС ЗАВОДЧИКА С ИНДЕКСОМ <i>{{.Female.Breeder.Contact}}</i> </td>
+		</tr>
+		<tr>
+			<td> &nbsp; </td>
+		</tr>
+		<tr>
+			<td>Метрики щенков заполнены в строгом соответствии с данным актом обследования помета</td>
+		</tr>
+		<tr>
+			<td align="left"> <b>ОТВЕТСТВЕННЫЙ ЗА КЛЕЙМЕНИЕ</b></td>
+			<td align="right"> ______________________</td>
+			<td align="right"> /<i>{{.Claim.FIO}}</i>/ </td>
+		</tr>
+		<tr>
+			<td> &nbsp; </td>
+		</tr>
+		<tr>
+			<td align="left"> <b>ИНСТРУКТОР КЛУБА / ВЛАДЕЛЕЦ ПИТОМНИКА</b></td>
+			<td align="right"> ______________________</td>
+			<td align="right"> /<i>{{.Personal.FIO}}</i>/ </td>
+		</tr>
+		<tr>
+			<td> &nbsp; </td>
+		</tr>
+		<tr>
+			<td><b>М.П.</b></td>
+		</tr>
+	</table>
+
   </body>
 
 </html>
