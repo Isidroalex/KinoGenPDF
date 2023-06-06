@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type DocumentCenter struct {
@@ -246,6 +247,31 @@ func (p Puppy) ShortDisription() string {
 
 }
 
+func (p Puppy) ShortDisruptionPuppyCard(place string) string {
+	switch place {
+	case "defect":
+		if p.Description.Defect == "defect" {
+			return p.Description.Comment
+		} else {
+			return ""
+		}
+	case "revision":
+		if p.Description.Defect == "revision" {
+			return p.Description.Comment
+		} else {
+			return ""
+		}
+	case "month":
+		if p.Description.Defect == "revision" {
+			return p.Description.Revision
+		} else {
+			return ""
+		}
+	default:
+		return ""
+	}
+}
+
 func (p Puppy) ShowNameEng() string {
 	return convertToLatin(p.Nickname)
 }
@@ -299,9 +325,9 @@ type Input struct {
 
 func (m *Mating) Construct(i Input) {
 	*m = Mating{
-		Identification: i.Identification,
-		First:          i.First,
-		Control:        i.Control,
+		Identification: formatDate(i.Identification),
+		First:          formatDate(i.First),
+		Control:        formatDate(i.Control),
 		Address:        i.MatingAddress,
 		Male: &Dog{
 			Type:     i.MotherType,
@@ -353,9 +379,9 @@ func (m *Mating) Construct(i Input) {
 func (l *Litter) Construct(i Input) {
 	*l = Litter{
 		Stump:    i.StumpCode,
-		ActDate:  i.LitterSurvey,
-		Birthday: i.LitterBirthday,
-		Control:  i.Control,
+		ActDate:  formatDate(i.LitterSurvey),
+		Birthday: formatDate(i.LitterBirthday),
+		Control:  formatDate(i.Control),
 		Address:  i.MatingAddress,
 		Male: &Dog{
 			Type:     i.MotherType,
@@ -426,7 +452,7 @@ func (l *Litter) Construct(i Input) {
 				Owner:    nil,
 			},
 			Color:    v.Color,
-			Birthday: i.LitterBirthday,
+			Birthday: formatDate(i.LitterBirthday),
 			WoolType: v.WoolType,
 			Description: struct {
 				Comment  string
@@ -527,4 +553,40 @@ func convertToLatin(input string) string {
 	}
 
 	return strings.Join(result, "")
+}
+
+func formatDate(input string) string {
+	// Парсим входную строку в формате YYYY-MM-DD
+	date, err := time.Parse("2006-01-02", input)
+	if err != nil {
+		return ""
+	}
+
+	var monthNames = map[time.Month]string{
+		time.January:   "января",
+		time.February:  "февраля",
+		time.March:     "марта",
+		time.April:     "апреля",
+		time.May:       "мая",
+		time.June:      "июня",
+		time.July:      "июля",
+		time.August:    "августа",
+		time.September: "сентября",
+		time.October:   "октября",
+		time.November:  "ноября",
+		time.December:  "декабря",
+	}
+
+	// Получаем день, месяц и год из даты
+	day := date.Day()
+	month := date.Month()
+	year := date.Year()
+
+	// Получаем название месяца на русском языке
+	monthName := monthNames[month]
+
+	// Формируем итоговую строку
+	formattedDate := fmt.Sprintf("%d %s %d", day, monthName, year)
+
+	return formattedDate
 }

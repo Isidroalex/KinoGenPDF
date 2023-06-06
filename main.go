@@ -31,7 +31,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	fmt.Println(r)
+	fmt.Printf("Receive request %s, %s", r.Method, r.Body)
 
 	if r.Method == "POST" {
 		t := time.Now().Unix()
@@ -208,7 +208,7 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 			puppyStruct := Puppy{
 
 				Color:    puppy.Color,
-				Birthday: Data.LitterBirthday,
+				Birthday: formatDate(Data.LitterBirthday),
 				WoolType: puppy.WoolType,
 				Description: struct {
 					Comment  string
@@ -274,12 +274,6 @@ func handleRequestPDF(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-		//_, err = io.Copy(w, zipFile)
-		//if err != nil {
-		//	http.Error(w, "Internal server error", 500)
-		//	return
-		//}
-		//fmt.Println("pdf copied successfully")
 		fileInfo, err := zipFile.Stat()
 		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
