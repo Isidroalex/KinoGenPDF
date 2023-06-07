@@ -38,16 +38,16 @@
 <table style="width: 100%;height: 17.0pt; font-size: 12.0pt;border: solid 1.0pt;border-collapse: collapse;">
 	<tbody>
 	<tr style="width: 100%">
-		<td style="border: solid windowtext 1.0pt;" colspan="6"><p><b>Порода</b> / Breed {{.Type}} {{.ShowWoolType}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="6"><p><b>Порода/Breed</b> {{.Type}} {{.ShowWoolType}}</p></td>
 	</tr>
 	<tr style="width: 100%;border:solid 1.0pt;">
-		<td style="border: solid windowtext 1.0pt;" colspan="4"><p><b>Кличка</b> / Name {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="2"><p> Пол/Sex: {{.LongSex}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="4"><p><b>Кличка/Name</b> {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="2"><p> <b>Пол/Sex</b> {{.LongSex}}</p></td>
 	</tr>
 	<tr style="width: 100%;">
-		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Дата рождения/d.o.b.</b> {{.Birthday}}</p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Клеймо/TATTOO </b> {{.DCenter.StumpCode}} {{.Stamp}} </p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Окрас/Colour:</b> {{.Color}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Дата рождения/d.o.b.</b> <br>{{.Birthday}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Клеймо/TATTOO</b>  {{.DCenter.StumpCode}} {{.Stamp}} </p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Окрас/Colour</b> {{.Color}}</p></td>
 	</tr>
 	<tr style="border:solid 1.0pt;">
 		<td style="border: solid windowtext 1.0pt; height: 17.0pt;" colspan="3">
@@ -61,10 +61,10 @@
 	</tr>
 	<tr style="height: 17.0pt;border:solid windowtext 1.0pt;">
 		<td style="border: solid windowtext 1.0pt; " colspan="2">
-			<p><b> Заводчик/Breeder </b>  {{.Breeder.FIO}} </p>
+			<p><b> Заводчик/Breeder</b>  {{.Breeder.FIO}} </p>
 		</td>
 		<td style="border: solid windowtext 1.0pt; " colspan="4">
-			<p><b> Адрес/Address</b>  {{.Breeder.Contact}} </p>
+			<p><b> Адрес/Address</b>  {{.Breeder.Contact}} <br><b>E-mail: </b>{{.Breeder.Email}}</p>
 		</td>
 	</tr>
 	<tr style="height: 17.0pt;border:solid windowtext 1.0pt;">
@@ -77,49 +77,7 @@
 	</tr>
 	</tbody>
 </table>
-<!--<table style="width: 100%; border-collapse: collapse;border: solid windowtext 1.0pt;">-->
-<!--	<tbody>-->
-<!--	<tr style="border:solid windowtext 1.0pt">-->
-<!--		<td style="border: solid windowtext 1.0pt;"><p><b> ПОРОДА</b> / BREED  {{.Type}} {{.ShowWoolType}}</td>-->
-<!--&lt;!&ndash;		<td><p>  </p></td>&ndash;&gt;-->
-<!--	</tr>-->
-<!--	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">-->
-<!--		<td style="border: solid windowtext 1.0pt;"><p><b>КЛИЧКА</b> / NAME {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>-->
-<!--&lt;!&ndash;		<td><p>  </p></td>&ndash;&gt;-->
-<!--	</tr>-->
-<!--	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">-->
-<!--		<td colspan="2"><p><b> ДАТА РОЖДЕНИЯ</b> / DATE OF BIRTH   {{.Birthday}}</p></td>-->
-<!--		<td><p><b>ПОЛ</b> / SEX  {{.LongSex}}</p></td>-->
-<!--	</tr>-->
-<!--	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">-->
-<!--		<td style="border:solid windowtext 1.0pt;"><p><b> ОКРАС</b> / COLOUR   {{.Color}}</p></td>-->
-<!--		<td><p><b>КЛЕЙМО</b> / TATTOO  {{.DCenter.StumpCode}} {{.Stamp}}</p></td>-->
-<!--	</tr>-->
-<!--	</tbody>-->
-<!--</table>-->
-<!--<p>&nbsp;</p>-->
-<!--<table style="width: 100%; border: solid 1.0pt;border-collapse: collapse;">-->
-<!--	<tbody>-->
-<!--	<tr style="width: 100%; border: solid 1.0pt;">-->
-<!--		<td colspan="8"><b> ОТЕЦ</b> / SIRE: {{.Father.Nickname}}</td>-->
-<!--		<td><b> РКФ №</b> / RKF #: {{.Father.Pedigree}}</td>-->
-<!--	</tr>-->
-<!--	<tr style="width: 100%; border: solid 1.0pt;">-->
-<!--		<td colspan="8"><b> МАТЬ</b> / DAM: {{.Mother.Nickname}}</td>-->
-<!--		<td><b> РКФ №</b> / RKF #: {{.Mother.Pedigree}}</td>-->
-<!--	</tr>-->
-<!--	<tr>-->
-<!--		<td><b>ЗАВОДЧИК</b> / BREEDER: {{.Breeder.FIO}}</td>-->
-<!--		<td colspan="8"><b>АДРЕС</b> / ADDRESS : {{.Breeder.Contact}} <br><b>E-mail: </b>{{.Breeder.Email}}</td>-->
-<!--	</tr>-->
-<!--	<tr>-->
-<!--		<td><b>ВЛАДЕЛЕЦ</b> / OWNER: {{.Owner.FIO}}</td>-->
-<!--		<td colspan="4"><b>АДРЕС</b> / ADDRESS : {{.Owner.Contact}}<br></br></td>-->
-<!--	</tr>-->
-
-<!--	</tbody>-->
-<!--</table>-->
-<!--<p>&nbsp;</p>-->
+<p>&nbsp;</p>
 <p style="margin-left: 0pt;font-size: 12.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ: </u> </b> &nbsp;&nbsp;&nbsp;Отбракован:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____{{.ShortDisruptionPuppyCard "defect"}}______</p>
 <p style="margin-left: 0pt;font-size: 12.0pt;">Оставлен на переосмотр:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;(в __{{.ShortDisruptionPuppyCard "month"}}__ месяцев _____{{.ShortDisruptionPuppyCard "revision"}}_____)</p>
 
@@ -129,10 +87,9 @@
 		<td align="left"> <b> ПОДПИСЬ ЗАВОДЧИКА </b> / BREEDER'S SIGNATURE</td>
 		<td align="left"> ________________________ </td>
 	</tr>
-</table>
-
-<p style="font-size: 12.0pt;"><b> ПОДПИСЬ ОТВЕТСТВЕННОГО ЛИЦА КИНОЛОГИЧЕСКОЙ ОРГАНИЗАЦИИ</b>/</p>
-<table bordercolor="red" border="0" width="100%">
+	<tr>
+		<td><b>ПОДПИСЬ ОТВЕТСТВЕННОГО ЛИЦА КИНОЛОГИЧЕСКОЙ ОРГАНИЗАЦИИ</b></td>
+	</tr>
 	<tr>
 		<td align="left"> KENNEL CLUB REPRESENTATIVE'S SIGNATURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		<td align="left"> ________________________ </td>
@@ -208,7 +165,7 @@
 	</tr>
 	</tbody>
 </table>
-<!--<p>&nbsp;</p>-->
+<p>&nbsp;</p>
 <p style="margin-left: 0pt;font-size: 10.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ: </u> </b> &nbsp;&nbsp;&nbsp;Отбракован:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____{{.ShortDisruptionPuppyCard "defect"}}______</p>
 <p style="margin-left: 0pt;font-size: 10.0pt;">Оставлен на переосмотр:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;(в __{{.ShortDisruptionPuppyCard "month"}}__ месяцев _____{{.ShortDisruptionPuppyCard "revision"}}_____)</p>
 <p>&nbsp;</p>
@@ -217,10 +174,9 @@
 		<td align="left"> <b>ПОДПИСЬ ЗАВОДЧИКА </b> / BREEDER'S SIGNATURE</td>
 		<td align="left"> ________________________ </td>
 	</tr>
-</table>
-
-<p style="font-size: 10.0pt;"><b>ПОДПИСЬ ОТВЕТСТВЕННОГО ЛИЦА КИНОЛОГИЧЕСКОЙ ОРГАНИЗАЦИИ</b>/</p>
-<table style="font-size: 10.0pt;" bordercolor="red" border="0" width="100%">
+	<tr>
+		<td><b>ПОДПИСЬ ОТВЕТСТВЕННОГО ЛИЦА КИНОЛОГИЧЕСКОЙ ОРГАНИЗАЦИИ</b></td>
+	</tr>
 	<tr>
 		<td align="left">KENNEL CLUB REPRESENTATIVE'S SIGNATURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		<td align="left"> ________________________ </td>
