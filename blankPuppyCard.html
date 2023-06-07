@@ -37,15 +37,15 @@
 <table style="width: 100%; border-collapse: collapse; border: none;">
 	<tbody>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td><p><b> ПОРОДА</b> / BREED</td>
-		<td><p> {{.Type}} {{.ShowWoolType}} </p></td>
+		<td><p><b> ПОРОДА</b> / BREED  {{.Type}} {{.ShowWoolType}}</td>
+<!--		<td><p>  </p></td>-->
 	</tr>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td><p><b>КЛИЧКА</b> / NAME </p></td>
-		<td><p> {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>
+		<td><p><b>КЛИЧКА</b> / NAME {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>
+<!--		<td><p>  </p></td>-->
 	</tr>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td style="border:solid windowtext 1.0pt;"><p><b> ДАТА РОЖДЕНИЯ</b> / DATE OF BIRTH   {{.Birthday}}</p></td>
+		<td colspan="2"><p><b> ДАТА РОЖДЕНИЯ</b> / DATE OF BIRTH   {{.Birthday}}</p></td>
 		<td><p><b>ПОЛ</b> / SEX  {{.LongSex}}</p></td>
 	</tr>
 	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
@@ -55,29 +55,28 @@
 	</tbody>
 </table>
 <p>&nbsp;</p>
-
-<table style="width: 100%; border-collapse: collapse; border: none;">
+<table style="width: 100%; border: solid 1.0pt;border-collapse: collapse;">
 	<tbody>
-	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td style="border: solid windowtext 1.0pt;"><p><b> ОТЕЦ</b> / SIRE: {{.Father.Nickname}}</p></td>
-		<td style="border: solid windowtext 1.0pt;"><p><b> РКФ №</b> / RKF #: {{.Father.Pedigree}}</p></td>
+	<tr style="width: 100%; border: solid 1.0pt;">
+		<td colspan="8"><b> ОТЕЦ</b> / SIRE: {{.Father.Nickname}}</td>
+		<td><b> РКФ №</b> / RKF #: {{.Father.Pedigree}}</td>
 	</tr>
-	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td style="border: solid windowtext 1.0pt;"><p><b> МАТЬ</b> / DAM: {{.Mother.Nickname}}</p></td>
-		<td style="border: solid windowtext 1.0pt;"><p><b> РКФ №</b> / RKF #: {{.Mother.Pedigree}}</p></td>
+	<tr style="width: 100%; border: solid 1.0pt;">
+		<td colspan="8"><b> МАТЬ</b> / DAM: {{.Mother.Nickname}}</td>
+		<td><b> РКФ №</b> / RKF #: {{.Mother.Pedigree}}</td>
 	</tr>
-	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td style="border: solid windowtext 1.0pt;"><p><b>ЗАВОДЧИК</b> / BREEDER: {{.Breeder.FIO}}</p></td>
-		<td style="border: solid windowtext 1.0pt;"><p><b>АДРЕС</b> / ADDRESS : {{.Breeder.Contact}} <br><b>E-mail: </b>{{.Breeder.Email}} </p></td>
+	<tr>
+		<td><b>ЗАВОДЧИК</b> / BREEDER: {{.Breeder.FIO}}</td>
+		<td colspan="8"><b>АДРЕС</b> / ADDRESS : {{.Breeder.Contact}} <br><b>E-mail: </b>{{.Breeder.Email}}</td>
 	</tr>
-	<tr style="width: 100%;border:solid windowtext 1.0pt;padding: 0in 5.4pt 0in 5.4pt;">
-		<td style="border: solid windowtext 1.0pt;"><p><b>ВЛАДЕЛЕЦ</b> / OWNER: {{.Owner.FIO}}</p></td>
-		<td style="border: solid windowtext 1.0pt;"><p><b>АДРЕС</b> / ADDRESS : {{.Owner.Contact}}<br></br></p></td>
+	<tr style="border: solid windowtext 1.0pt;" >
+		<td><b>ВЛАДЕЛЕЦ</b> / OWNER: {{.Owner.FIO}}</td>
+		<td colspan="4"><b>АДРЕС</b> / ADDRESS : {{.Owner.Contact}}<br></br></td>
 	</tr>
 
 	</tbody>
 </table>
-<p>&nbsp;</p>
+<!--<p>&nbsp;</p>-->
 <p style="margin-left: 0pt;font-size: 12.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ: </u> </b> &nbsp;&nbsp;&nbsp;Отбракован:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____{{.ShortDisruptionPuppyCard "defect"}}______</p>
 <p style="margin-left: 0pt;font-size: 12.0pt;">Оставлен на переосмотр:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;(в __{{.ShortDisruptionPuppyCard "month"}}__ месяцев _____{{.ShortDisruptionPuppyCard "revision"}}_____)</p>
 
@@ -92,7 +91,7 @@
 <p style="font-size: 12.0pt;"><b> ПОДПИСЬ ОТВЕТСТВЕННОГО ЛИЦА КИНОЛОГИЧЕСКОЙ ОРГАНИЗАЦИИ</b>/</p>
 <table bordercolor="red" border="0" width="100%">
 	<tr>
-		<td align="left"> KENNEL CLUB REPRESENTATIVE'S SIGNATURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align="left"> KENNEL CLUB REPRESENTATIVE'S SIGNATURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		<td align="left"> ________________________ </td>
 	</tr>
 </table>
@@ -130,8 +129,8 @@
 		<td style="border: solid windowtext 1.0pt;" colspan="6"><p><b>Порода</b> / Breed {{.Type}} {{.ShowWoolType}}</p></td>
 	</tr>
 	<tr style="width: 100%;border:solid 1.0pt;">
-		<td style="border: solid windowtext 1.0pt;" colspan="3"><p><b>Кличка</b> / Name {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>
-		<td style="border: solid windowtext 1.0pt;" colspan="3"><p> Пол/Sex: {{.LongSex}}</p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="4"><p><b>Кличка</b> / Name {{.ShowFullNameRus}} {{.ShowWoolType}} / {{.ShowFullNameEng}} </p></td>
+		<td style="border: solid windowtext 1.0pt;" colspan="2"><p> Пол/Sex: {{.LongSex}}</p></td>
 	</tr>
 	<tr style="width: 100%;">
 		<td style="border: solid windowtext 1.0pt;" colspan="2"><p><b>Дата рождения/d.o.b.</b> {{.Birthday}}</p></td>
@@ -149,24 +148,24 @@
 		</td>
 	</tr>
 	<tr style="height: 17.0pt;border:solid windowtext 1.0pt;">
-		<td style="border: solid windowtext 1.0pt; " colspan="3">
+		<td style="border: solid windowtext 1.0pt; " colspan="2">
 			<p><b> Заводчик/Breeder </b>  {{.Breeder.FIO}} </p>
 		</td>
-		<td style="border: solid windowtext 1.0pt; " colspan="3">
+		<td style="border: solid windowtext 1.0pt; " colspan="4">
 			<p><b> Адрес/Address</b>  {{.Breeder.Contact}} </p>
 		</td>
 	</tr>
 	<tr style="height: 17.0pt;border:solid windowtext 1.0pt;">
-		<td style="border: solid windowtext 1.0pt; " colspan="3">
+		<td style="border: solid windowtext 1.0pt; " colspan="2">
 			<p><b> Владелец/Owner </b>  {{.Owner.FIO}}</p>
 		</td>
-		<td style="border: solid windowtext 1.0pt; " colspan="3">
+		<td style="border: solid windowtext 1.0pt; " colspan="4">
 			<p><b> Адрес/Address</b>  {{.Owner.Contact}} <br></br></p>
 		</td>
 	</tr>
 	</tbody>
 </table>
-<p>&nbsp;</p>
+<!--<p>&nbsp;</p>-->
 <p style="margin-left: 0pt;font-size: 10.0pt;"><b><u> ОСОБЫЕ ОТМЕТКИ: </u> </b> &nbsp;&nbsp;&nbsp;Отбракован:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____{{.ShortDisruptionPuppyCard "defect"}}______</p>
 <p style="margin-left: 0pt;font-size: 10.0pt;">Оставлен на переосмотр:   <b>НЕТ</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ДА</b>&nbsp;&nbsp;(в __{{.ShortDisruptionPuppyCard "month"}}__ месяцев _____{{.ShortDisruptionPuppyCard "revision"}}_____)</p>
 <p>&nbsp;</p>
@@ -180,7 +179,7 @@
 <p style="font-size: 10.0pt;"><b>ПОДПИСЬ ОТВЕТСТВЕННОГО ЛИЦА КИНОЛОГИЧЕСКОЙ ОРГАНИЗАЦИИ</b>/</p>
 <table style="font-size: 10.0pt;" bordercolor="red" border="0" width="100%">
 	<tr>
-		<td align="left">KENNEL CLUB REPRESENTATIVE'S SIGNATURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align="left">KENNEL CLUB REPRESENTATIVE'S SIGNATURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		<td align="left"> ________________________ </td>
 	</tr>
 </table>
