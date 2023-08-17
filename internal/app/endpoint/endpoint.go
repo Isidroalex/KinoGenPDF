@@ -28,9 +28,7 @@ func (e *Endpoint) Post(ctx echo.Context) error {
 
 	//Fill up useCase
 	uc := useCase.New(dto)
-	//if err := uc.AddCTX(ctx); err != nil {
-	//	return err
-	//}
+
 	if err := uc.AddMating(); err != nil {
 		return err
 	}
@@ -43,9 +41,6 @@ func (e *Endpoint) Post(ctx echo.Context) error {
 	if err := uc.AddPuppyCards(); err != nil {
 		return err
 	}
-	//if err := uc.CreateZIPWriter("archive.zip"); err != nil {
-	//	return err
-	//}
 
 	// creating PDFs in ZIP archive
 	if err := uc.WritePDF(useCase.BlackAgreement, useCase.Agreement, uc.Mating); err != nil {

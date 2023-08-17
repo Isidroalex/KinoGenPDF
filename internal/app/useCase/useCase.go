@@ -83,23 +83,6 @@ func (u *UseCase) AddPuppyCards() error {
 	return nil
 }
 
-//func (u *UseCase) CreateZIPWriter(name string) error {
-//
-//	errDir := os.Mkdir(u.FolderName, 0777)
-//	if errDir != nil {
-//		return errDir
-//	}
-//
-//	zipFile, err := os.Create(u.FolderName + name)
-//	if err != nil {
-//		return err
-//	}
-//	defer zipFile.Close()
-//
-//	u.ZipFile = zipFile.Name()
-//	return nil
-//}
-
 func (u *UseCase) WritePDF(tmplPath, name string, data interface{}) error {
 
 	path := u.FolderName
