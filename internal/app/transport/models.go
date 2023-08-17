@@ -1,4 +1,4 @@
-package main
+package transport
 
 import (
 	"fmt"
@@ -346,11 +346,11 @@ type Input struct {
 	} `json:"Puppy"`
 }
 
-func (m *Mating) Construct(i Input) {
+func (m *Mating) Construct(i *DTO) {
 	*m = Mating{
-		Identification: formatDate(i.Identification),
-		First:          formatDate(i.First),
-		Control:        formatDate(i.Control),
+		Identification: FormatDate(i.Identification),
+		First:          FormatDate(i.First),
+		Control:        FormatDate(i.Control),
 		Address:        i.MatingAddress,
 		Male: &Dog{
 			Type:     i.MotherType,
@@ -402,9 +402,9 @@ func (m *Mating) Construct(i Input) {
 func (l *Litter) Construct(i Input) {
 	*l = Litter{
 		Stump:    i.StumpCode,
-		ActDate:  formatDate(i.LitterSurvey),
-		Birthday: formatDate(i.LitterBirthday),
-		Control:  formatDate(i.Control),
+		ActDate:  FormatDate(i.LitterSurvey),
+		Birthday: FormatDate(i.LitterBirthday),
+		Control:  FormatDate(i.Control),
 		Address:  i.MatingAddress,
 		Male: &Dog{
 			Type:     i.MotherType,
@@ -476,7 +476,7 @@ func (l *Litter) Construct(i Input) {
 				Owner:       nil,
 			},
 			Color:    v.Color,
-			Birthday: formatDate(i.LitterBirthday),
+			Birthday: FormatDate(i.LitterBirthday),
 			WoolType: v.WoolType,
 			Description: struct {
 				Comment  string
@@ -579,7 +579,7 @@ func convertToLatin(input string) string {
 	return strings.Join(result, "")
 }
 
-func formatDate(input string) string {
+func FormatDate(input string) string {
 	// Парсим входную строку в формате YYYY-MM-DD
 	date, err := time.Parse("2006-01-02", input)
 	if err != nil {
